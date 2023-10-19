@@ -1,0 +1,11 @@
+
+Q
+java:S37400"/Provide the parametrized type for this generic.(“ñ€Íıÿÿÿÿ8 ¢íº´1
+v
+java:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ø†¤²8 ¢íº´1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(–ú½µ8¢¢íº´1
+G	java:S106"+Replace this use of System.out by a logger.(¬–ÿŞ8ª¢íº´1
+F	java:S1061"+Replace this use of System.out by a logger.(ÀÈéS8¬¢íº´1
+L	java:S1065"+Replace this use of System.out by a logger.(€Ôşÿÿÿÿ8¬¢íº´1
+L	java:S1068"+Replace this use of System.out by a logger.(¹ìùÿÿÿÿ8¬¢íº´1
+L	java:S106;"+Replace this use of System.out by a logger.(µ–®ûÿÿÿÿ8¬¢íº´1
