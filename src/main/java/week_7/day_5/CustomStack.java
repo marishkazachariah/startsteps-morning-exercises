@@ -34,6 +34,8 @@ Constraints:
     The pop method should not pop an element from the stack if it's empty.
     Assume that the maximum size of the stack will be a positive integer.
 
+Exception Handling:
+    Add proper exception handling to the push, pop, and peek methods. Throw exceptions like StackOverflowException when trying to push to a full stack and IllegalStateException when trying to pop from an empty stack.
 Bonus:
 
 Dynamic Resizing:
@@ -58,11 +60,13 @@ public class CustomStack<T> {
     private int maxSize;
     private List<T> stackArray;
     private int top;
+    private int initialMaxSize;
 
     public CustomStack(int s) {
         this.maxSize = s;
         this.stackArray = new ArrayList<>(maxSize);
         this.top = -1;
+        this.initialMaxSize = s;
     }
 
     public boolean isEmpty() {
@@ -73,17 +77,26 @@ public class CustomStack<T> {
         return top == maxSize - 1;
     }
 
-    public void push(T item) throws StackOverflowException {
+    // removed the exception since it doubles in size for the bonus
+    // public void push(T item) throws StackOverflowException {
+    public void push(T item) {
         if(isFull()) {
-            throw new StackOverflowException("Stack is full.");
+            // dynamic sizing to add more to the array
+            maxSize = maxSize * 2;
+            // throw exception
+            // throw new StackOverflowException("Stack is full.");
         }
         stackArray.add(top + 1, item );
         top++;
+
     }
 
     public void pop() {
         if(isEmpty()) {
             throw new IllegalStateException();
+        }
+        if(stackArray.size() <= (maxSize / 4) && maxSize > initialMaxSize) {
+            maxSize = maxSize / 2;
         }
         stackArray.remove(top);
         top--;
@@ -93,8 +106,19 @@ public class CustomStack<T> {
         if(isEmpty()) {
             throw new IllegalStateException();
         }
-        System.out.println(stackArray.get(top));
+        System.out.println("Top of the stack (peek) is: " + stackArray.get(top));
     }
 
+    public int size() {
+       return stackArray.size();
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder stringOfStack = new StringBuilder();
+        for (T t : stackArray) {
+            stringOfStack.append(t).append(", ");
+        }
+        return stringOfStack.toString();
+    }
 }
