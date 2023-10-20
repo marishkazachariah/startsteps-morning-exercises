@@ -3,6 +3,7 @@ b
 java:S2184	"@Cast one of the operands of this addition operation to a "long".(æĞÃ øÿÿÿÿ8íû˜´1
 b
 java:S2184"@Cast one of the operands of this addition operation to a "long".(æĞÃ øÿÿÿÿ8íû˜´1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’€Ÿıÿÿÿÿ8‹ªÏ¼´1
 F	java:S1062"+Replace this use of System.out by a logger.(ß²¢C8øû˜´1
 F	java:S106:"+Replace this use of System.out by a logger.(‘’ğT8ùû˜´1
 G	java:S106B"+Replace this use of System.out by a logger.(Öò«å8ùû˜´1
