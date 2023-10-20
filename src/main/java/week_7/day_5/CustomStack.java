@@ -1,6 +1,7 @@
 package week_7.day_5;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -53,9 +54,8 @@ Add a toString Method:
 
 Stack Operations with Custom Objects:
     If you have implemented generics, create a custom object, say Person with attributes like name and age. Implement the Comparable interface in the Person class. Now, use your CustomStack to store Person objects and sort them based on the age or name.
-
  */
-public class CustomStack<T> {
+public class CustomStack<T extends Comparable<T>> {
     // maxSize will always be positive
     private int maxSize;
     private List<T> stackArray;
@@ -120,5 +120,9 @@ public class CustomStack<T> {
             stringOfStack.append(t).append(", ");
         }
         return stringOfStack.toString();
+    }
+
+    public void sort() {
+        Collections.sort(stackArray);
     }
 }
