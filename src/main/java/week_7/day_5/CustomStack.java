@@ -1,6 +1,7 @@
 package week_7.day_5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,13 +59,15 @@ Stack Operations with Custom Objects:
 public class CustomStack<T extends Comparable<T>> {
     // maxSize will always be positive
     private int maxSize;
-    private List<T> stackArray;
+    // private List<T> stackArray;
+    private T[] stackArray;
     private int top;
     private int initialMaxSize;
 
     public CustomStack(int s) {
         this.maxSize = s;
-        this.stackArray = new ArrayList<>(maxSize);
+        // this.stackArray = new ArrayList<>(maxSize);
+        this.stackArray = (T[]) new Comparable[maxSize];
         this.top = -1;
         this.initialMaxSize = s;
     }
@@ -78,27 +81,44 @@ public class CustomStack<T extends Comparable<T>> {
     }
 
     // removed the exception since it doubles in size for the bonus
+    // old method when using ArrayList
     // public void push(T item) throws StackOverflowException {
+//    public void push(T item) {
+//        if(isFull()) {
+//            // dynamic sizing to add more to the array
+//            maxSize = maxSize * 2;
+//            // throw exception
+//            // throw new StackOverflowException("Stack is full.");
+//        }
+//        stackArray.add(top + 1, item );
+//    }
+
     public void push(T item) {
         if(isFull()) {
-            // dynamic sizing to add more to the array
+            // Dynamic sizing to add more to the array
             maxSize = maxSize * 2;
-            // throw exception
-            // throw new StackOverflowException("Stack is full.");
+            T[] newLargerArray = (T[]) new Comparable[maxSize];
+            System.arraycopy(stackArray, 0, newLargerArray, 0, stackArray.length);
+            stackArray = newLargerArray;
         }
-        stackArray.add(top + 1, item );
-        top++;
-
+        if(stackArray.length <= (maxSize / 4) && maxSize > initialMaxSize) {
+            maxSize = maxSize / 2;
+            T[] newSmallerArray = (T[]) new Comparable[maxSize];
+            System.arraycopy(stackArray, 0, newSmallerArray, 0, stackArray.length);
+            stackArray = newSmallerArray;
+        }
+        stackArray[++top] = item;
     }
 
     public void pop() {
         if(isEmpty()) {
             throw new IllegalStateException();
         }
-        if(stackArray.size() <= (maxSize / 4) && maxSize > initialMaxSize) {
-            maxSize = maxSize / 2;
-        }
-        stackArray.remove(top);
+        // for some reason I thought this would be applied to pop() but I
+        // realize the best solution is doing it in the push() method
+//        if(stackArray.length <= (maxSize / 4) && maxSize > initialMaxSize) {
+//            maxSize = maxSize / 2;
+//        }
         top--;
     }
 
@@ -106,11 +126,11 @@ public class CustomStack<T extends Comparable<T>> {
         if(isEmpty()) {
             throw new IllegalStateException();
         }
-        System.out.println("Top of the stack (peek) is: " + stackArray.get(top));
+        System.out.println("Top of the stack (peek) is: " + stackArray[top]);
     }
 
     public int size() {
-       return stackArray.size();
+       return stackArray.length;
     }
 
     @Override
@@ -123,6 +143,6 @@ public class CustomStack<T extends Comparable<T>> {
     }
 
     public void sort() {
-        Collections.sort(stackArray);
+        Arrays.sort(stackArray, 0, top+1);
     }
 }
