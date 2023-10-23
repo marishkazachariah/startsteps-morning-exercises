@@ -1,6 +1,8 @@
 package week_8.day_1;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -31,35 +33,48 @@ Create a program that allows users to specify a path, and the program should cre
 Bonus: Allow the creation of nested directories based on user input, like "folder/subfolder/subsubfolder".
  */
 public class AdditionalExercises {
-//    public static void main(String[] args) {
-//        // Exercise 1
-//        FileReader fileReader = null;
-//        int numberOfWords = 0;
-//        String csvFilePath = "src/main/java/week_8/day_1/input.txt";
-//        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                String[] words = line.split("\\s");
-//                numberOfWords += words.length;
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("Number of words in the file: " + numberOfWords);
-//
-//        // Exercise 2
-//        Scanner sc = new Scanner(System.in);
-//        while (true) {
-//            System.out.println("Write as many words. Type \"exit\" to exit.");
-//            String input = sc.nextLine();
-//            if (input.toLowerCase().contains("exit")) {
-//                System.out.println("Goodbye!");
-//                break;
-//            }
-//            System.out.println("Words entered: " + input);
-//        }
-//        sc.close();
-//    }
+    public static void main(String[] args) {
+        // Exercise 1
+        int numberOfWords = 0;
+        // Bonus
+        Map<String, Integer> wordFrequency = new HashMap<>();
+
+        String csvFilePath = "src/main/java/week_8/day_1/input.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] words = line.split("\\s");
+                numberOfWords += words.length;
+                for (String word: words) {
+                    // Remove punctuation and convert to lowercase for better word matching
+                    word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
+                    if (!word.isEmpty()) {
+                        wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Number of words in the file: " + numberOfWords);
+        // Bonus
+        for(Map.Entry<String,Integer> entry: wordFrequency.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+        }
+
+        // Exercise 2
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("Write as many words. Type \"exit\" to exit.");
+            String input = sc.nextLine();
+            if (input.toLowerCase().contains("exit")) {
+                System.out.println("Goodbye!");
+                break;
+            }
+            System.out.println("Words entered: " + input);
+        }
+        sc.close();
+    }
 
     // Exercise 3
     public static void exerciseThree() {
