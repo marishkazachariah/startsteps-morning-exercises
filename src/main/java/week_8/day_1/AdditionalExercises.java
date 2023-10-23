@@ -1,8 +1,7 @@
 package week_8.day_1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Properties;
 import java.util.Scanner;
 
 /*
@@ -32,33 +31,89 @@ Create a program that allows users to specify a path, and the program should cre
 Bonus: Allow the creation of nested directories based on user input, like "folder/subfolder/subsubfolder".
  */
 public class AdditionalExercises {
-    public static void main(String[] args) {
-        // Exercise 1
-        FileReader fileReader = null;
-        int numberOfWords = 0;
-        String csvFilePath = "src/main/java/week_8/day_1/input.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] words = line.split("\\s");
-                numberOfWords += words.length;
+//    public static void main(String[] args) {
+//        // Exercise 1
+//        FileReader fileReader = null;
+//        int numberOfWords = 0;
+//        String csvFilePath = "src/main/java/week_8/day_1/input.txt";
+//        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                String[] words = line.split("\\s");
+//                numberOfWords += words.length;
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Number of words in the file: " + numberOfWords);
+//
+//        // Exercise 2
+//        Scanner sc = new Scanner(System.in);
+//        while (true) {
+//            System.out.println("Write as many words. Type \"exit\" to exit.");
+//            String input = sc.nextLine();
+//            if (input.toLowerCase().contains("exit")) {
+//                System.out.println("Goodbye!");
+//                break;
+//            }
+//            System.out.println("Words entered: " + input);
+//        }
+//        sc.close();
+//    }
+
+    // Exercise 3
+    public static void exerciseThree() {
+        String filePath = "src/main/java/week_8/day_1/append_existing_file.txt";
+
+        // The "true" parameter enables append mode
+        try (FileWriter writer = new FileWriter(filePath, true);
+             Scanner sc = new Scanner(System.in)) {
+
+            System.out.println("Enter text to append to the file. Type 'Exit' to finish.");
+
+            while (true) {
+                String input = sc.nextLine();
+                if (input.equalsIgnoreCase("Exit")) {
+                    System.out.println("Content appended to the file.");
+                    break;
+                }
+
+                writer.write(input + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Number of words in the file: " + numberOfWords);
+    }
 
-        // Exercise 2
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            System.out.println("Write as many words. Type \"exit\" to exit.");
-            String input = sc.nextLine();
-            if (input.toLowerCase().contains("exit")) {
-                System.out.println("Goodbye!");
-                break;
-            }
-            System.out.println("Words entered: " + input);
+    // Exercise 4
+    public static void exerciseFour() {
+        String filePath = "src/main/java/week_8/day_1/config.properties";
+
+        try (FileInputStream input = new FileInputStream(filePath)) {
+            Properties prop = new Properties();
+            prop.load(input);
+            prop.forEach((key, value) -> System.out.println("Key : " + key + ", Value : " + value));
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        sc.close();
+    }
+
+    public static void exerciseFive() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the path to create a directory: ");
+        String filePath = sc.next();
+        System.out.println("Enter the name of the desired a directory: ");
+        filePath = filePath + sc.next();
+
+        //Creating a File object
+        File file = new File(filePath);
+
+        //Creating the directory
+        boolean bool = file.mkdir();
+        if(bool){
+            System.out.println("Directory created successfully");
+        }else{
+            System.out.println("Could not create specified directory");
+        }
     }
 }
