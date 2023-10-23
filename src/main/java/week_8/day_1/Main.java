@@ -65,7 +65,6 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
         // write file
         try (FileWriter fileWriter = new FileWriter(outputFilePath)) {
             fileWriter.write(textToOutput.toString());
@@ -100,7 +99,6 @@ public class Main {
             while ((line = br.readLine()) != null) {
                 // Split the line into individual values using a comma as the delimiter
                 String[] values = line.split(",");
-
                 for (String value : values) {
                     System.out.print(value + "\t"); // Use "\t" for tab-separated output
                 }
