@@ -70,7 +70,8 @@ public class Main {
              BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream)) {
 
             int bufferSize = bufferedInputStream.available();
-            byte[] buffer = new byte[bufferSize];
+            // byte[] buffer = new byte[bufferSize];
+            byte[] buffer = new byte[1024]; // best to use specific size for chunks
             int x;
 
             while ((x = bufferedInputStream.read(buffer, 0, buffer.length)) != -1) {
