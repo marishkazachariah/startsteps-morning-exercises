@@ -1,6 +1,7 @@
 package week_8.day_2;
 
 import java.io.*;
+import java.util.Arrays;
 
 /*
 Exercise 1: Write a Java program that reads a text file named "input.txt" using FileInputStream and displays its contents to the console.
@@ -21,7 +22,7 @@ public class Main {
 
     public static void exerciseOne() {
         try (FileInputStream fileInputStream = new FileInputStream(INPUT_PATH)) {
-            int x = 0;
+            int x;
             while ((x = fileInputStream.read()) != -1) {
                 System.out.println((char) x);
             }
@@ -35,7 +36,7 @@ public class Main {
     public static void exerciseThree() {
         try (FileInputStream fileInputStream = new FileInputStream(INPUT_JPG_PATH);
              FileOutputStream fileOutputStream = new FileOutputStream(OUTPUT_JPG_PATH)) {
-            int x = 0;
+            int x;
             while ((x = fileInputStream.read()) != -1) {
                 System.out.println((char) x);
                 fileOutputStream.write((char) x);
@@ -48,7 +49,7 @@ public class Main {
 
     public static void exerciseFive() {
         try(FileInputStream fileInputStream = new FileInputStream(INPUT_CSV_PATH)) {
-            int x = 0;
+            int x;
             StringBuilder stringBuilder = new StringBuilder();
             while ((x = fileInputStream.read()) != -1) {
                 stringBuilder.append((char) x);
@@ -70,11 +71,10 @@ public class Main {
 
             int bufferSize = bufferedInputStream.available();
             byte[] buffer = new byte[bufferSize];
-            int x = 0;
+            int x;
 
             while ((x = bufferedInputStream.read(buffer, 0, buffer.length)) != -1) {
-                // System.out.write(buffer, 0, x);
-                bufferedInputStream.read(buffer, 0, x);
+                 System.out.println(new String(buffer, 0, x));
             }
 
             System.out.println("Buffer size: " + bufferSize);
