@@ -11,7 +11,10 @@ target/
 *.iws
 *.iml
 *.ipr
-
+/*.idea
+*.idea
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/securityhotspotstore/index.pb
 ### Eclipse ###
 .apt_generated
 .classpath
@@ -39,3 +42,4 @@ build/
 
 ### Week 8 Day 1 I/O Exercise ###
 src/main/java/week_8/day_1/output.txt
+
