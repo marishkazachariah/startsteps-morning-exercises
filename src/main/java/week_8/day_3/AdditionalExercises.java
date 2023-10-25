@@ -4,13 +4,17 @@ import java.io.*;
 import java.util.*;
 
 public class AdditionalExercises {
+    public static final String INPUT_PATH = "src/main/java/week_8/day_3/input.txt";
+
     public static void textCollectorWithUniqueness() throws IOException {
         Scanner sc = new Scanner(System.in);
         Set<String> uniqueWords = new HashSet<>();
-        File file = new File("src/main/java/week_8/day_3/output2.txt");
+        String inputPath = "src/main/java/week_8/day_3/output2.txt";
+
+        File file = new File(inputPath);
 
         if(file.exists()) {
-            try(FileReader fileReader = new FileReader("src/main/java/week_8/day_3/output2.txt")) {
+            try(FileReader fileReader = new FileReader(inputPath)) {
                 int x;
                 StringBuilder contentsOfFile = new StringBuilder();
                 while ((x = fileReader.read()) != -1) {
@@ -27,7 +31,7 @@ public class AdditionalExercises {
             String input = sc.nextLine();
 
             if (input.equalsIgnoreCase("Export")) {
-                try(FileWriter fileWriter = new FileWriter("src/main/java/week_8/day_3/output2.txt", true)) {
+                try(FileWriter fileWriter = new FileWriter(inputPath, true)) {
                     for (String uniqueWord : uniqueWords) {
                         fileWriter.write(uniqueWord + ", ");
                     }
@@ -45,7 +49,7 @@ public class AdditionalExercises {
     }
 
     public static void lineCounter() throws FileNotFoundException {
-        String inputFilePath = "src/main/java/week_8/day_3/input.txt";
+        String inputFilePath = INPUT_PATH;
 
         try (FileReader fileReader = new FileReader(inputFilePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
@@ -64,7 +68,7 @@ public class AdditionalExercises {
     }
 
     public static void convertToUpperCase() {
-        String inputFilePath = "src/main/java/week_8/day_3/input.txt";
+        String inputFilePath = INPUT_PATH;
         String outputFilePath = "src/main/java/week_8/day_3/outputToUppercase.txt";
         StringBuilder textToOutput = new StringBuilder();
 
@@ -90,7 +94,7 @@ public class AdditionalExercises {
 
     public static void findDuplicatedWords() {
         StringBuilder contentsOfFile = new StringBuilder();
-        try(FileReader fileReader = new FileReader("src/main/java/week_8/day_3/input.txt")) {
+        try(FileReader fileReader = new FileReader(INPUT_PATH)) {
             int character;
 
             while ((character = fileReader.read()) != -1) {
