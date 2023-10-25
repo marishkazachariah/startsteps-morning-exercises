@@ -52,6 +52,7 @@ public class Main {
         } catch (IOException e) {
             System.err.println("Error writing file: " + e.getMessage());
         }
+        sc.close();
     }
 
     public static void exerciseThree() {
@@ -70,6 +71,7 @@ public class Main {
             System.out.println("Add more text to append to file");
             String additionalText = sc.nextLine();
             fileWriter.write("\n" + additionalText + "\n");
+            sc.close();
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         } catch (IOException e) {
