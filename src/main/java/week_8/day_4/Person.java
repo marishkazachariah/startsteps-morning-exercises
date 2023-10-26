@@ -46,32 +46,25 @@ public class Person implements Serializable {
         return currentDateTime;
     }
 
+    // Exercise 5
     @Serial
     private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
-        String encryptedName = reverse(encrypt(name));
         objectOutputStream.defaultWriteObject();
-        objectOutputStream.writeObject(encryptedName);
+        objectOutputStream.writeObject(encrypt(name));
     }
 
     @Serial
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        String encryptedName = (String) in.readObject();
-        name = decrypt(reverse(encryptedName));
-    }
-
-    private String reverse(String str) {
-        return new StringBuilder(str).reverse().toString();
+        name = decrypt((String) in.readObject());
     }
 
     // Googled this
     private String encrypt(String data) {
-        byte[] encryptedBytes = data.getBytes(StandardCharsets.UTF_8);
-        return Base64.getEncoder().encodeToString(encryptedBytes);
+        return new StringBuilder(data).reverse().toString();
     }
 
     private String decrypt(String encryptedData) {
-        byte[] decryptedBytes = Base64.getDecoder().decode(encryptedData);
-        return new String(decryptedBytes, StandardCharsets.UTF_8);
+        return new StringBuilder(encryptedData).reverse().toString();
     }
 }

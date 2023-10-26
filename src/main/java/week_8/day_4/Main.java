@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Exercise 1 and 2
+        // Exercise 1, 2, 4
         // Serialization
         try (FileOutputStream fileOutputStream = new FileOutputStream("src/main/java/week_8/day_4/person.ser");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {

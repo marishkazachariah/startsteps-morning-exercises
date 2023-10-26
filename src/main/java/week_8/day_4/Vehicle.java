@@ -24,37 +24,25 @@ public class Vehicle implements Externalizable {
         return make;
     }
 
-    public void setMake(String make) {
-        this.make = make;
-    }
-
     public String getModel() {
         return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(make);
-        out.writeObject(model);
+        out.writeUTF(make);
+        out.writeUTF(model);
         out.writeInt(year);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        make = (String) in.readObject();
-        model = (String) in.readObject();
+        make = in.readUTF();
+        model = in.readUTF();
         year = in.readInt();
     }
 }
