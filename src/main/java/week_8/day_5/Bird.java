@@ -1,6 +1,8 @@
 package week_8.day_5;
 
-class Bird extends Animal {
+import java.io.Serializable;
+
+class Bird extends Animal implements Serializable {
     private static final long serialVersionUID = 2L;
     public Bird(String name, int age) {
         super(name, age);

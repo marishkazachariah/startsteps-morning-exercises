@@ -1,6 +1,8 @@
 package week_8.day_5;
 
-public abstract class Animal {
+import java.io.Serializable;
+
+public abstract class Animal implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private int age;

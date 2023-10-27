@@ -18,10 +18,10 @@ public class MainAnimal {
         zoo.listAnimals();
 
 
-        zoo.serialize("src/main/java/week_8/day_4/zoo.ser");
+        zoo.serialize(zoo,"src/main/java/week_8/day_5/zoo.ser");
 
         Zoo deserializedZoo = new Zoo();
-        deserializedZoo.deserialize("zoo.ser");
+        deserializedZoo.deserialize("src/main/java/week_8/day_5/zoo.ser");
 
         System.out.println("Serialized animals:");
         deserializedZoo.listAnimals();

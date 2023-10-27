@@ -23,11 +23,12 @@ class Zoo implements SerializableInterface, Serializable {
     }
 
     @Override
-    public void serialize(String filename) {
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename))) {
-            objectOutputStream.writeObject(this);
-            System.out.println("Zoo has been serialized to " + filename);
-        } catch (IOException e) {
+    public void serialize(Object obj, String filePath) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+            objectOutputStream.writeObject(obj);
+            objectOutputStream.flush();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -39,7 +40,7 @@ class Zoo implements SerializableInterface, Serializable {
             this.animals = zoo.animals;
             System.out.println("Zoo has been deserialized from " + filename);
         } catch (ClassNotFoundException e) {
-            System.out.println("File not found" + e.getMessage());
+            System.err.println("File not found" + e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }
