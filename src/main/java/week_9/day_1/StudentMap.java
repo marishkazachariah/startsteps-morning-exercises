@@ -35,23 +35,22 @@ public class StudentMap {
         System.out.println("Is Student removed: " + students.get(3));
 
         // Exercise 5
-        List<String> words = new ArrayList<>() {{
-            add("blue");
-            add("green");
-            add("blue");
-            add("yellow");
-            add("purple");
-            add("blue");
-            add("purple");
-        }};
-
+        String text = "This is a sample text. This text is used for counting word frequencies.";
+        String[] words = text.split(" ");
+        List<String> arrListWords = new ArrayList<>();
         Map<String, Integer> frequencyOfWords = new HashMap<>();
 
         for (String word: words) {
-            frequencyOfWords.putIfAbsent(word, Collections.frequency(words, word));
+            word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
+            arrListWords.add(word);
         }
+
+        for (String word: arrListWords) {
+            frequencyOfWords.putIfAbsent(word, Collections.frequency(arrListWords, word));
+        }
+
         for(Map.Entry<String, Integer> wordFreq : frequencyOfWords.entrySet()) {
-            System.out.println("key: " + wordFreq.getKey() + " value: " + wordFreq.getValue());
+            System.out.println("KEY: " + wordFreq.getKey() + " VALUE: " + wordFreq.getValue());
         }
     }
 }
