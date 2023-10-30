@@ -1,0 +1,57 @@
+package week_9.day_1;
+
+import java.util.*;
+
+public class StudentMap {
+    public static void main(String[] args) {
+        // Exercise 1
+        Map<Integer, String> students = new HashMap<>();
+        students.put(1, "Katie");
+        students.put(3, "Joe");
+        students.put(2, "Jack");
+        System.out.println("Student: " + students.get(2));
+
+        // Exercise 2
+        for(Map.Entry<Integer,String> student : students.entrySet()) {
+            int id = student.getKey();
+            String name = student.getValue();
+            System.out.println("key: " + id + " value: " + name);
+        }
+
+        // Exercise 3
+        Map<String, String> capitalMap = new LinkedHashMap<>();
+        capitalMap.put("Canada", "Ottawa");
+        capitalMap.put("France", "Paris");
+        capitalMap.put("India", "New Dehli");
+
+        for(Map.Entry<String, String> c : capitalMap.entrySet()) {
+            String country = c.getKey();
+            String city = c.getValue();
+            System.out.println("key: " + country + " value: " + city);
+        }
+
+        // Exercise 4
+        students.remove(3);
+        System.out.println("Is Student removed: " + students.get(3));
+
+        // Exercise 5
+        List<String> words = new ArrayList<>() {{
+            add("blue");
+            add("green");
+            add("blue");
+            add("yellow");
+            add("purple");
+            add("blue");
+            add("purple");
+        }};
+
+        Map<String, Integer> frequencyOfWords = new HashMap<>();
+
+        for (String word: words) {
+            frequencyOfWords.putIfAbsent(word, Collections.frequency(words, word));
+        }
+        for(Map.Entry<String, Integer> wordFreq : frequencyOfWords.entrySet()) {
+            System.out.println("key: " + wordFreq.getKey() + " value: " + wordFreq.getValue());
+        }
+    }
+}
