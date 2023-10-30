@@ -2,7 +2,7 @@ package week_9.day_1;
 
 import java.util.*;
 
-public class StudentMap {
+public class MapExercises {
     public static void main(String[] args) {
         // Exercise 1
         Map<Integer, String> students = new HashMap<>();
