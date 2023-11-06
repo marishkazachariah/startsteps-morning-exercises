@@ -1,6 +1,6 @@
 package week_10.day_1;
 
-public class ThreadExercise {
+public class ThreadExercises {
     public static void main(String[] args) {
         // Exercise 1
         Thread countingThread = new Thread(() -> {
@@ -30,7 +30,7 @@ public class ThreadExercise {
         try {
             evenThread.join();
         } catch (InterruptedException e) {
-            throw new RuntimeException();
+            throw new IllegalStateException();
         }
         oddThread.start();
 
