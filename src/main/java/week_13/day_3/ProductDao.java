@@ -36,11 +36,12 @@ public class ProductDao {
 
     public void addProduct(Product product) {
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO Product (name, category, price) VALUES (?, ?, ?)");
-            ps.setString(1, product.getName());
-            ps.setString(2, product.getCategory());
-            ps.setDouble(2, product.getPrice());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement("INSERT INTO Product (name, category, price) VALUES (?, ?, ?)")) {
+                ps.setString(1, product.getName());
+                ps.setString(2, product.getCategory());
+                ps.setDouble(3, product.getPrice());
+                ps.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
